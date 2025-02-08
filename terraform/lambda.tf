@@ -23,7 +23,8 @@ resource "aws_iam_policy_attachment" "lambda_basic_execution" {
 
 resource "aws_lambda_layer_version" "lambda_layer" {
   filename   = local.layer_output_path
-  layer_name = "${var.bot_name}_layer"
+  layer_name = data.archive_file.lambda_layer_zip.output_path
+  source_code_hash = data.archive_file.lambda_layer_zip.output_md5
 
   compatible_runtimes = ["python3.11"]
   depends_on          = [data.archive_file.lambda_layer_zip]
@@ -44,5 +45,5 @@ resource "aws_lambda_function" "telebot" {
     }
   }
   layers     = [aws_lambda_layer_version.lambda_layer.arn]
-  depends_on = [data.archive_file.lambda_src_zip]
+  depends_on = [data.archive_file.lambda_src_zip, aws_lambda_layer_version.lambda_layer]
 }

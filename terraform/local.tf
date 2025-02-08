@@ -10,7 +10,7 @@ locals {
 }
 
 locals {
-  requirements_file_hash = md5(local.requirements_file)
+requirements_file_hash = filesha256(local.requirements_file)
 }
 
 locals {

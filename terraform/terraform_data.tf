@@ -5,7 +5,7 @@ resource "terraform_data" "prepare_lambda_layers" {
     working_dir = path.module
     environment = {
       REQUIREMENTS_FILE = local.requirements_file
-      OUTPUT_DIR        = local.layer_input_path
+      OUTPUT_DIR        = "${local.layer_input_path}/python"
     }
 
     on_failure = fail
