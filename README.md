@@ -36,7 +36,7 @@ The `requirements.txt` file will be referenced during infrastructure deployment 
 1. Export AWS credentials to terminal
 1. Replace state file reference in `main.tf`
 1. Create a new file by name `terraform.tfvars` and populate variables `bot_token` and `bot_name`. See `terraform.tfvars.example` for reference. 
-1. `terraform validate` and `terraform apply`
+1. `terraform init` and `terraform apply`. Optionally run `terraform validate` and `terraform plan` to verify config before apply.
 
 ## Developer guide
 This section explains the elements of the template to aid in providing context required to perform customisations.
